@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#14315E">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Workflow Companion</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+
+<!--
+=======================================================================
+  EDITABLE CONTENT — change anything in this section anytime.
+  After saving, your live site updates within ~30 seconds.
+
+  HOW TO EDIT:
+    1. Click the pencil icon on this file in GitHub
+    2. Find the line you want to change below
+    3. Change the text between the quotes "like this"
+    4. Scroll to the bottom and click "Commit changes"
+
+  RULES:
+    - Keep the quotes around text
+    - Keep the commas between items
+    - Don't delete the curly braces { } or square brackets [ ]
+    - The "role" must be exactly one of: events, admin, marketing, frontline, all
+=======================================================================
+-->
+
+<script>
+const APP_CONTENT = {
+
+  retreatTitle: "Event Services Workflow Suite",
+  retreatSubtitle: "Staff Retreat 2025 · Tap a team to spotlight their work",
+  staffCount: 30,
+
+  teams: [
+    { role: "events",     name: "Events Lead",   subtitle: "Owns the workflow",     coach: true,  escalate: true,  review: true  },
+    { role: "admin",      name: "Administrative", subtitle: "Approvals & budget",   coach: false, escalate: true,  review: true  },
+    { role: "marketing",  name: "Marketing",     subtitle: "Comms & outreach",      coach: true,  escalate: false, review: true  },
+    { role: "frontline",  name: "Frontline",     subtitle: "Execution & data",      coach: true,  escalate: false, review: true  }
+  ],
+
+  tagline: "People · Process · Technology",
+
+  visionSteps: [
+    { title: "Identify need",         owner: "Events Lead",    role: "events" },
+    { title: "Set objectives",        owner: "Events Lead",    role: "events" },
+    { title: "Stakeholder buy-in",    owner: "Administrative", role: "admin" },
+    { title: "Allocate budget",       owner: "Administrative", role: "admin" },
+    { title: "Assign leads",          owner: "Events Lead",    role: "events" },
+    { title: "Draft plan",            owner: "Events Lead",    role: "events" },
+    { title: "Review cycle",          owner: "All teams",      role: "all" },
+    { title: "Stakeholder approval",  owner: "Administrative", role: "admin" },
+    { title: "Finalize scope",        owner: "Events Lead",    role: "events" },
+    { title: "Comms plan",            owner: "Marketing",      role: "marketing" },
+    { title: "Venue confirm",         owner: "Events Lead",    role: "events" },
+    { title: "Finalize timeline",     owner: "Events Lead",    role: "events" },
+    { title: "Final approval",        owner: "Administrative", role: "admin" },
+    { title: "Kick off",              owner: "All teams",      role: "all" }
+  ],
+
+  continuitySteps: [
+    { title: "Trigger review",        owner: "Events Lead",    role: "events" },
+    { title: "Gather data",           owner: "Frontline",      role: "frontline" },
+    { title: "Analyze results",       owner: "Events Lead",    role: "events" },
+    { title: "Identify gaps",         owner: "Events Lead",    role: "events" },
+    { title: "Assign owners",         owner: "Administrative", role: "admin" },
+    { title: "Rework loop",           owner: "All teams",      role: "all" },
+    { title: "Re-review",             owner: "Events Lead",    role: "events" },
+    { title: "Leadership approval",   owner: "Administrative", role: "admin" },
+    { title: "Update docs",           owner: "Administrative", role: "admin" },
+    { title: "Notify team",           owner: "Marketing",      role: "marketing" },
+    { title: "Implement changes",     owner: "Frontline",      role: "frontline" },
+    { title: "Monitor outcomes",      owner: "Frontline",      role: "frontline" },
+    { title: "Close out",             owner: "Events Lead",    role: "events" }
+  ]
+
+};
+</script>
+
+<!-- =======================================================================
+     END OF EDITABLE CONTENT — please don't change anything below this line
+     unless you know what you're doing.
+======================================================================= -->
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#f5f5f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#2c2c2a;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 0 24px rgba(20,49,94,0.08)}
+
+.app-header{background:#14315E;padding:14px 18px 14px;color:#E6F1FB;flex-shrink:0}
+.app-header h1{font-size:16px;font-weight:500;margin-bottom:2px}
+.app-header p{font-size:12px;color:#85B7EB}
+
+.context-bar{background:#0C447C;padding:9px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0}
+.context-label{color:#85B7EB;font-size:12px}
+.context-value{color:#E6F1FB;font-size:12px;font-weight:500;flex:1}
+.clear-btn{background:transparent;border:0.5px solid #378ADD;color:#B5D4F4;font-size:11px;padding:4px 10px;border-radius:5px;cursor:pointer;font-family:inherit;transition:background .15s}
+.clear-btn:active{background:rgba(255,255,255,0.1)}
+
+.tab-bar{display:flex;border-bottom:0.5px solid #D3D1C7;background:#fff;flex-shrink:0;overflow-x:auto}
+.tab{flex:1;padding:12px 4px;font-size:12px;text-align:center;color:#5F5E5A;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;font-family:inherit;background:transparent;border-left:none;border-right:none;border-top:none;min-width:64px;white-space:nowrap}
+.tab.active{color:#185FA5;border-bottom-color:#185FA5;font-weight:500}
+
+.screen{padding:14px 16px;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.section-lbl{font-size:11px;font-weight:500;color:#888780;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+
+.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.team-card{padding:12px 10px;border-radius:10px;border:0.5px solid;cursor:pointer;transition:transform .15s,box-shadow .15s;text-align:center;font-family:inherit}
+.team-card:active{transform:scale(0.97)}
+.team-card.selected{box-shadow:0 0 0 2px currentColor inset}
+.team-card .team-name{font-size:13px;font-weight:500;margin-bottom:3px}
+.team-card .team-sub{font-size:11px;opacity:.85;margin-bottom:8px}
+.team-card .team-count{font-size:10px;padding:2px 7px;border-radius:4px;display:inline-block;font-weight:500}
+
+.team-card.events{background:#E6F1FB;border-color:#85B7EB;color:#0C447C}
+.team-card.events.selected{background:#185FA5;border-color:#0C447C;color:#E6F1FB}
+.team-card.events .team-count{background:#B5D4F4;color:#0C447C}
+.team-card.events.selected .team-count{background:#0C447C;color:#B5D4F4}
+
+.team-card.admin{background:#E1F5EE;border-color:#5DCAA5;color:#085041}
+.team-card.admin.selected{background:#0F6E56;border-color:#085041;color:#E1F5EE}
+.team-card.admin .team-count{background:#9FE1CB;color:#085041}
+.team-card.admin.selected .team-count{background:#085041;color:#9FE1CB}
+
+.team-card.marketing{background:#FAECE7;border-color:#F0997B;color:#712B13}
+.team-card.marketing.selected{background:#993C1D;border-color:#712B13;color:#FAECE7}
+.team-card.marketing .team-count{background:#F5C4B3;color:#712B13}
+.team-card.marketing.selected .team-count{background:#712B13;color:#F5C4B3}
+
+.team-card.frontline{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
+.team-card.frontline.selected{background:#534AB7;border-color:#3C3489;color:#EEEDFE}
+.team-card.frontline .team-count{background:#CECBF6;color:#3C3489}
+.team-card.frontline.selected .team-count{background:#3C3489;color:#CECBF6}
+
+.flag-row{display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+.flag{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:500;letter-spacing:.04em}
+.team-card.events .flag.on{background:#0C447C;color:#B5D4F4}
+.team-card.admin .flag.on{background:#085041;color:#9FE1CB}
+.team-card.marketing .flag.on{background:#712B13;color:#F5C4B3}
+.team-card.frontline .flag.on{background:#3C3489;color:#CECBF6}
+.team-card.selected .flag.on{background:rgba(255,255,255,.25);color:#fff}
+.team-card .flag.off{background:transparent;border:0.5px solid currentColor;color:currentColor;opacity:.5}
+
+.ppt-strip{background:#F1EFE8;border-radius:8px;padding:12px 14px;text-align:center;margin-top:6px}
+.ppt-strip-label{font-size:10px;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.ppt-strip-text{font-size:13px;font-weight:500;color:#2c2c2a}
+
+.flow-step{display:flex;align-items:flex-start;gap:9px;padding:11px 12px;border-radius:8px;margin-bottom:6px;border:0.5px solid #D3D1C7;background:#fff;transition:background .15s}
+.flow-step.mine{background:#E6F1FB;border-color:#85B7EB}
+.flow-step.mine-admin{background:#E1F5EE;border-color:#5DCAA5}
+.flow-step.mine-marketing{background:#FAECE7;border-color:#F0997B}
+.flow-step.mine-frontline{background:#EEEDFE;border-color:#AFA9EC}
+.flow-step.flagged{background:#FAEEDA;border-color:#EF9F27}
+.step-num{width:22px;height:22px;border-radius:50%;background:#14315E;color:#E6F1FB;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:500}
+.flow-step.mine .step-num{background:#185FA5}
+.flow-step.mine-admin .step-num{background:#0F6E56}
+.flow-step.mine-marketing .step-num{background:#993C1D}
+.flow-step.mine-frontline .step-num{background:#534AB7}
+.flow-step.flagged .step-num{background:#854F0B;color:#FAEEDA}
+.step-body{flex:1;min-width:0}
+.step-title{font-size:13px;font-weight:500;color:#2c2c2a;margin-bottom:2px}
+.step-owner{font-size:12px;color:#5F5E5A}
+.step-actions{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+.badge{font-size:10px;padding:2px 7px;border-radius:3px;background:#F1EFE8;color:#5F5E5A;font-weight:500}
+.badge.mine{background:#B5D4F4;color:#0C447C}
+.badge.mine-admin{background:#9FE1CB;color:#085041}
+.badge.mine-marketing{background:#F5C4B3;color:#712B13}
+.badge.mine-frontline{background:#CECBF6;color:#3C3489}
+.badge.q{background:#FAC775;color:#633806}
+.flag-btn{margin-left:auto;font-size:20px;cursor:pointer;flex-shrink:0;padding:0 4px;color:#888780;background:transparent;border:none;font-family:inherit}
+.flag-btn.active{color:#BA7517}
+
+.stat-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.stat-card{background:#F1EFE8;border-radius:8px;padding:12px 14px}
+.stat-val{font-size:24px;font-weight:500;color:#2c2c2a}
+.stat-lbl{font-size:12px;color:#5F5E5A;margin-top:2px}
+
+.heat-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.heat-label{font-size:12px;color:#5F5E5A;width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heat-bar-wrap{flex:1;height:16px;background:#F1EFE8;border-radius:4px;overflow:hidden}
+.heat-bar{height:100%;border-radius:4px;transition:width .4s ease-out}
+.heat-count{font-size:12px;color:#5F5E5A;width:18px;text-align:right;flex-shrink:0;font-weight:500}
+
+.bottom-nav{display:flex;border-top:0.5px solid #D3D1C7;background:#fff;flex-shrink:0;padding-bottom:env(safe-area-inset-bottom)}
+.nav-item{flex:1;padding:10px 4px 12px;text-align:center;cursor:pointer;color:#888780;font-size:11px;background:transparent;border:none;font-family:inherit}
+.nav-item i{display:block;font-size:20px;margin-bottom:3px;font-style:normal}
+.nav-item.active{color:#185FA5}
+
+.empty-state{text-align:center;padding:40px 16px;color:#888780;font-size:13px;line-height:1.7}
+.empty-state i{font-size:36px;display:block;margin-bottom:12px;color:#B4B2A9}
+
+.about-section{font-size:13px;color:#5F5E5A;line-height:1.7}
+.about-section p{margin-bottom:10px}
+.about-section .highlight{display:inline-block;padding:1px 6px;border-radius:3px}
+
+@media (prefers-color-scheme: dark) {
+  html,body{background:#0d1f3c;color:#E6F1FB}
+  body{background:#0d1f3c;box-shadow:none}
+  .flow-step{background:#14315E;border-color:#1F6FA8;color:#E6F1FB}
+  .step-title{color:#E6F1FB}
+  .step-owner{color:#85B7EB}
+  .badge{background:#1F6FA8;color:#85B7EB}
+  .stat-card{background:#14315E}
+  .stat-val{color:#E6F1FB}
+  .stat-lbl{color:#85B7EB}
+  .heat-bar-wrap{background:#14315E}
+  .heat-label,.heat-count{color:#85B7EB}
+  .ppt-strip{background:#14315E}
+  .ppt-strip-text{color:#E6F1FB}
+  .ppt-strip-label{color:#85B7EB}
+  .section-lbl{color:#85B7EB}
+  .tab-bar{background:#0d1f3c;border-bottom-color:#1F6FA8}
+  .tab{color:#85B7EB}
+  .tab.active{color:#85B7EB;border-bottom-color:#85B7EB}
+  .bottom-nav{background:#0d1f3c;border-top-color:#1F6FA8}
+  .nav-item{color:#5B96C9}
+  .nav-item.active{color:#85B7EB}
+  .empty-state{color:#85B7EB}
+  .empty-state i{color:#5B96C9}
+  .about-section{color:#B5D4F4}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1 id="app-title">Event Services Workflow Suite</h1>
+  <p id="app-subtitle">Staff Retreat 2025 · Tap a team to spotlight their work</p>
+</header>
+
+<div class="context-bar">
+  <span class="context-label">Spotlight:</span>
+  <span class="context-value" id="ctx-value">All teams</span>
+  <button class="clear-btn" onclick="setRole('all')">Clear</button>
+</div>
+
+<div class="tab-bar">
+  <button class="tab active" data-screen="teams" onclick="showScreen('teams')">Teams</button>
+  <button class="tab" data-screen="vision" onclick="showScreen('vision')">Vision</button>
+  <button class="tab" data-screen="continuity" onclick="showScreen('continuity')">Continuity</button>
+  <button class="tab" data-screen="heatmap" onclick="showScreen('heatmap')">Questions</button>
+</div>
+
+<main>
+  <section id="screen-teams" class="screen">
+    <p class="section-lbl">Core planning teams — tap to spotlight</p>
+    <div class="team-grid" id="team-grid"></div>
+    <div class="ppt-strip">
+      <div class="ppt-strip-label">Tagline</div>
+      <div class="ppt-strip-text" id="tagline-text"></div>
+    </div>
+  </section>
+
+  <section id="screen-vision" class="screen" style="display:none">
+    <p class="section-lbl">Phase 1 — Setting the vision</p>
+    <div id="vision-steps"></div>
+  </section>
+
+  <section id="screen-continuity" class="screen" style="display:none">
+    <p class="section-lbl">Phase 2 — Continuity review</p>
+    <div id="continuity-steps"></div>
+  </section>
+
+  <section id="screen-heatmap" class="screen" style="display:none">
+    <p class="section-lbl">Live question heat map</p>
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-val" id="totalFlags">0</div><div class="stat-lbl">Questions flagged</div></div>
+      <div class="stat-card"><div class="stat-val" id="staffCount">30</div><div class="stat-lbl">Staff attending</div></div>
+    </div>
+    <p class="section-lbl">Most-questioned steps</p>
+    <div id="heatmap-rows"></div>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-item active" data-screen="teams" onclick="showScreen('teams')"><i class="ti ti-users"></i>Teams</button>
+  <button class="nav-item" data-screen="vision" onclick="showScreen('vision')"><i class="ti ti-git-branch"></i>Vision</button>
+  <button class="nav-item" data-screen="continuity" onclick="showScreen('continuity')"><i class="ti ti-refresh"></i>Review</button>
+  <button class="nav-item" data-screen="heatmap" onclick="showScreen('heatmap')"><i class="ti ti-flame"></i>Heat map</button>
+</nav>
+
+<script>
+const roleLabels = {
+  all: 'All teams',
+  events: 'Events Lead',
+  admin: 'Administrative',
+  marketing: 'Marketing',
+  frontline: 'Frontline'
+};
+const roleClass = {
+  events: 'mine',
+  admin: 'mine-admin',
+  marketing: 'mine-marketing',
+  frontline: 'mine-frontline'
+};
+
+let currentRole = 'all';
+const flags = {};
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function init() {
+  document.getElementById('app-title').textContent = APP_CONTENT.retreatTitle;
+  document.getElementById('app-subtitle').textContent = APP_CONTENT.retreatSubtitle;
+  document.getElementById('staffCount').textContent = APP_CONTENT.staffCount;
+  document.getElementById('tagline-text').textContent = APP_CONTENT.tagline;
+  document.title = APP_CONTENT.retreatTitle + ' | JFPBC';
+
+  const grid = document.getElementById('team-grid');
+  grid.innerHTML = APP_CONTENT.teams.map(t => {
+    const count = countSteps(t.role);
+    return `<div class="team-card ${escapeHTML(t.role)}" data-role="${escapeHTML(t.role)}" onclick="setRole('${escapeHTML(t.role)}')">
+      <div class="team-name">${escapeHTML(t.name)}</div>
+      <div class="team-sub">${escapeHTML(t.subtitle)}</div>
+      <div class="team-count">${count} step${count === 1 ? '' : 's'}</div>
+      <div class="flag-row">
+        <span class="flag ${t.coach?'on':'off'}">COACH</span>
+        <span class="flag ${t.escalate?'on':'off'}">ESCALATE</span>
+        <span class="flag ${t.review?'on':'off'}">REVIEW</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  renderSteps('vision');
+  renderSteps('continuity');
+}
+
+function countSteps(role) {
+  return [...APP_CONTENT.visionSteps, ...APP_CONTENT.continuitySteps].filter(s => s.role === role).length;
+}
+
+function isMine(step) {
+  if (currentRole === 'all') return false;
+  return step.role === currentRole || step.role === 'all';
+}
+
+function renderSteps(phase) {
+  const stepsKey = phase === 'vision' ? 'visionSteps' : 'continuitySteps';
+  const steps = APP_CONTENT[stepsKey];
+  const el = document.getElementById(phase + '-steps');
+  if (!el) return;
+  el.innerHTML = steps.map((s, i) => {
+    const mine = isMine(s);
+    const flagged = flags[phase + i];
+    const cls = mine ? (roleClass[currentRole] || 'mine') : '';
+    return `<div class="flow-step${cls ? ' ' + cls : ''}${flagged ? ' flagged' : ''}">
+      <div class="step-num">${i + 1}</div>
+      <div class="step-body">
+        <div class="step-title">${escapeHTML(s.title)}</div>
+        <div class="step-owner">${escapeHTML(s.owner)}</div>
+        <div class="step-actions">
+          ${mine ? `<span class="badge ${cls}">${escapeHTML(roleLabels[currentRole])}</span>` : ''}
+          ${flagged ? '<span class="badge q">Question flagged</span>' : ''}
+        </div>
+      </div>
+      <button class="flag-btn${flagged ? ' active' : ''}" onclick="toggleFlag('${phase}',${i},event)" aria-label="Flag for discussion">${flagged ? '⚑' : '⚐'}</button>
+    </div>`;
+  }).join('');
+}
+
+function toggleFlag(phase, i, e) {
+  e.stopPropagation();
+  flags[phase + i] = !flags[phase + i];
+  renderSteps(phase);
+  renderHeatmap();
+  document.getElementById('totalFlags').textContent = Object.values(flags).filter(Boolean).length;
+}
+
+function renderHeatmap() {
+  const allSteps = [
+    ...APP_CONTENT.visionSteps.map((s, i) => ({...s, key: 'vision' + i, count: flags['vision' + i] ? Math.floor(Math.random() * 8) + 3 : 0})),
+    ...APP_CONTENT.continuitySteps.map((s, i) => ({...s, key: 'continuity' + i, count: flags['continuity' + i] ? Math.floor(Math.random() * 6) + 2 : 0}))
+  ].filter(s => s.count > 0).sort((a, b) => b.count - a.count).slice(0, 6);
+
+  const el = document.getElementById('heatmap-rows');
+  if (!allSteps.length) {
+    el.innerHTML = '<div class="empty-state"><i class="ti ti-flag-2"></i>No questions flagged yet.<br>Tap ⚐ on any step.</div>';
+    return;
+  }
+  const max = Math.max(...allSteps.map(s => s.count), 1);
+  el.innerHTML = allSteps.map(s => {
+    const pct = Math.round(s.count / max * 100);
+    const color = s.count > 6 ? '#BA7517' : s.count > 3 ? '#EF9F27' : '#FAC775';
+    return `<div class="heat-row">
+      <div class="heat-label">${escapeHTML(s.title)}</div>
+      <div class="heat-bar-wrap"><div class="heat-bar" style="width:${pct}%;background:${color}"></div></div>
+      <div class="heat-count">${s.count}</div>
+    </div>`;
+  }).join('');
+}
+
+function setRole(role) {
+  currentRole = role;
+  document.getElementById('ctx-value').textContent = roleLabels[role];
+  document.querySelectorAll('.team-card').forEach(c => {
+    c.classList.toggle('selected', c.dataset.role === role);
+  });
+  renderSteps('vision');
+  renderSteps('continuity');
+}
+
+function showScreen(name) {
+  ['teams', 'vision', 'continuity', 'heatmap'].forEach(s => {
+    const el = document.getElementById('screen-' + s);
+    if (el) el.style.display = s === name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.screen === name));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.screen === name));
+  if (name === 'heatmap') renderHeatmap();
+  window.scrollTo(0, 0);
+}
+
+init();
+</script>
+
+</body>
+</html>
