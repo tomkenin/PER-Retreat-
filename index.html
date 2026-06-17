@@ -7,7 +7,6 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="googlebot" content="noindex, nofollow">
 <title>Workflow Companion</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
 
 <!--
 =======================================================================
@@ -24,7 +23,8 @@
     - Keep the quotes around text
     - Keep the commas between items
     - Don't delete the curly braces { } or square brackets [ ]
-    - The "role" must be exactly one of: events, admin, marketing, frontline, all
+    - The "role" must be exactly one of: frontline, admin, marketing, events
+    - Keep "abbr" to 3 characters or fewer for it to fit the badge
 =======================================================================
 -->
 
@@ -32,50 +32,91 @@
 const APP_CONTENT = {
 
   retreatTitle: "Event Services Workflow Suite",
-  retreatSubtitle: "Staff Retreat 2025 · Tap a team to spotlight their work",
-  staffCount: 30,
+  retreatSubtitle: "Philanthropy & External Relations Retreat 2026",
 
-  teams: [
-    { role: "events",     name: "Events Lead",   subtitle: "Owns the workflow",     coach: true,  escalate: true,  review: true  },
-    { role: "admin",      name: "Administrative", subtitle: "Approvals & budget",   coach: false, escalate: true,  review: true  },
-    { role: "marketing",  name: "Marketing",     subtitle: "Comms & outreach",      coach: true,  escalate: false, review: true  },
-    { role: "frontline",  name: "Frontline",     subtitle: "Execution & data",      coach: true,  escalate: false, review: true  }
-  ],
+  flowcharts: {
 
-  tagline: "People · Process · Technology",
+    teams: {
+      label: "Teams",
+      title: "Core Event Planning Teams",
+      subtitle: "Roles & responsibilities overview",
+      tagline: "People · Process · Technology",
+      steps: [
+        { abbr: "SOV", title: "Set overall vision",                   owner: "Frontline",      role: "frontline", description: "Set overall vision, strategy, and direction for the event, which includes identifying target audience, fundraising strategy, and event goals." },
+        { abbr: "MCS", title: "Meet with Chairs & Supervisors",       owner: "Frontline",      role: "frontline", description: "Meet with Chairs and Supervisors prior to the Event Concept & Strategy Meeting to align on goals and messaging." },
+        { abbr: "CVM", title: "Communicate vision",                   owner: "Frontline",      role: "frontline", description: "Communicate vision to Marketing and Events so they can execute." },
+        { abbr: "DPC", title: "Define program content",               owner: "Frontline",      role: "frontline", description: "Define program content, speakers, and high-level flow." },
+        { abbr: "RAM", title: "Review & approve materials",           owner: "Frontline",      role: "frontline", description: "Review and approve key materials and communications; serve as final decision maker." },
+        { abbr: "DEF", title: "Develop & execute fundraising",        owner: "Frontline",      role: "frontline", description: "Develop and execute pre- and post-event fundraising strategies, including donor cultivation, solicitation, stewardship, and follow-up plans, to strengthen relationships and advance fundraising goals." },
+        { abbr: "MA",  title: "Maintain accountability",              owner: "Frontline",      role: "frontline", description: "Maintain accountability by responding promptly to decisions and approvals." },
+        { abbr: "LBE", title: "Lead by example",                      owner: "Frontline",      role: "frontline", description: "Lead by example in communication, responsiveness, preparedness, and ownership." },
 
-  visionSteps: [
-    { title: "Identify need",         owner: "Events Lead",    role: "events" },
-    { title: "Set objectives",        owner: "Events Lead",    role: "events" },
-    { title: "Stakeholder buy-in",    owner: "Administrative", role: "admin" },
-    { title: "Allocate budget",       owner: "Administrative", role: "admin" },
-    { title: "Assign leads",          owner: "Events Lead",    role: "events" },
-    { title: "Draft plan",            owner: "Events Lead",    role: "events" },
-    { title: "Review cycle",          owner: "All teams",      role: "all" },
-    { title: "Stakeholder approval",  owner: "Administrative", role: "admin" },
-    { title: "Finalize scope",        owner: "Events Lead",    role: "events" },
-    { title: "Comms plan",            owner: "Marketing",      role: "marketing" },
-    { title: "Venue confirm",         owner: "Events Lead",    role: "events" },
-    { title: "Finalize timeline",     owner: "Events Lead",    role: "events" },
-    { title: "Final approval",        owner: "Administrative", role: "admin" },
-    { title: "Kick off",              owner: "All teams",      role: "all" }
-  ],
+        { abbr: "PIL", title: "Pull invitation lists",                owner: "Administrative", role: "admin",     description: "Pull invitation lists based on approved event criteria and provide final lists to Marketing for invitation production and distribution." },
+        { abbr: "MIR", title: "Manage invitations & RSVPs",           owner: "Administrative", role: "admin",     description: "Manage invitations, RSVPs, and registration tracking." },
+        { abbr: "MPP", title: "Manage printing & materials",          owner: "Administrative", role: "admin",     description: "Manage the printing and preparation of name tags, pledge cards, and other event material as required." },
+        { abbr: "WCP", title: "Work in partnership with Events",      owner: "Administrative", role: "admin",     description: "Work in close partnership with the Events Team to provide administrative support and ensure seamless event planning, execution + follow-up." },
 
-  continuitySteps: [
-    { title: "Trigger review",        owner: "Events Lead",    role: "events" },
-    { title: "Gather data",           owner: "Frontline",      role: "frontline" },
-    { title: "Analyze results",       owner: "Events Lead",    role: "events" },
-    { title: "Identify gaps",         owner: "Events Lead",    role: "events" },
-    { title: "Assign owners",         owner: "Administrative", role: "admin" },
-    { title: "Rework loop",           owner: "All teams",      role: "all" },
-    { title: "Re-review",             owner: "Events Lead",    role: "events" },
-    { title: "Leadership approval",   owner: "Administrative", role: "admin" },
-    { title: "Update docs",           owner: "Administrative", role: "admin" },
-    { title: "Notify team",           owner: "Marketing",      role: "marketing" },
-    { title: "Implement changes",     owner: "Frontline",      role: "frontline" },
-    { title: "Monitor outcomes",      owner: "Frontline",      role: "frontline" },
-    { title: "Close out",             owner: "Events Lead",    role: "events" }
-  ]
+        { abbr: "DMM", title: "Develop & manage messaging",           owner: "Marketing",      role: "marketing", description: "Develop and manage overall messaging, branding, and communications delivery." },
+        { abbr: "PMM", title: "Produce marketing materials",          owner: "Marketing",      role: "marketing", description: "Produce and review marketing materials (remarks, slides, emails, web, print, social)." },
+        { abbr: "QCV", title: "Quality control & versions",           owner: "Marketing",      role: "marketing", description: "Ensure quality control, consistency, and version management." },
+        { abbr: "AML", title: "Align with leadership",                owner: "Marketing",      role: "marketing", description: "Align messaging with leadership and Development vision." },
+        { abbr: "CCF", title: "Collaborate cross-functionally",       owner: "Marketing",      role: "marketing", description: "Collaborate cross-functionally through regular check-ins and content reviews." },
+        { abbr: "WPE", title: "Work proactively with evolving info",  owner: "Marketing",      role: "marketing", description: "Work proactively with evolving information, collaborating with the Frontline Lead to determine what can be advanced before all details are finalized, ensuring projects continue to move forward efficiently." },
+        { abbr: "DPS", title: "Drive promotion",                      owner: "Marketing",      role: "marketing", description: "Drive promotion to support attendance and engagement goals." },
+
+        { abbr: "BVL", title: "Bring vision to life",                 owner: "Events",         role: "events",    description: "Bring the vision to life through planning and execution." },
+        { abbr: "SMM", title: "Streamline meetings",                  owner: "Events",         role: "events",    description: "Streamline meetings with clear agendas, roles, and outcomes." },
+        { abbr: "EDM", title: "Ensure invitation deadlines",          owner: "Events",         role: "events",    description: "Ensure deadlines for all invitation materials (email, print, online) are clearly communicated and updated on Teams channel." },
+        { abbr: "PWS", title: "Provide weekly status updates",        owner: "Events",         role: "events",    description: "Provide weekly status updates and key timeline snapshots." },
+        { abbr: "TPP", title: "Track progress & deadlines",           owner: "Events",         role: "events",    description: "Track project progress and manage deadlines across teams; flag risks and escalate overdue items." },
+        { abbr: "LLP", title: "Lead logistical planning",             owner: "Events",         role: "events",    description: "Lead all logistical planning: venue, vendors, AV, décor, collateral materials, and setup." },
+        { abbr: "MPT", title: "Manage program timing",                owner: "Events",         role: "events",    description: "Manage program timing and run-of-show execution." },
+        { abbr: "OSO", title: "Oversee on-site operations",           owner: "Events",         role: "events",    description: "Oversee on-site operations, staff, and vendor coordination." },
+        { abbr: "ESE", title: "Ensure seamless attendee experience",  owner: "Events",         role: "events",    description: "Ensure a seamless and high-quality attendee experience." },
+        { abbr: "DEB", title: "Develop event budgets",                owner: "Events",         role: "events",    description: "Develop and manage event budgets in consultation with the Frontline Lead and VP Development to ensure expenses align with approved budget projections and overall fundraising goals." }
+      ]
+    },
+
+    vision: {
+      label: "Vision",
+      title: "Setting the Vision for Events",
+      subtitle: "Frontline Lead — Vision",
+      tagline: "Defined set of event elements established prior to the Event Concept & Strategy Meeting",
+      steps: [
+        { abbr: "RHI", title: "Review historical information",        owner: "Frontline",            role: "frontline", description: "Prior to meeting, Frontline reviews all historical information such as post-event feedback briefing, invites, and past program materials." },
+        { abbr: "SDV", title: "Set draft vision",                     owner: "Frontline",            role: "frontline", description: "Frontline sets draft vision for the event (see vision example)." },
+        { abbr: "MSI", title: "Meet with Supervisor",                 owner: "Frontline",            role: "frontline", description: "Frontline meets with Supervisor for input and incorporates feedback." },
+        { abbr: "MCL", title: "Meet with Chairs & Committee Leads",   owner: "Frontline",            role: "frontline", description: "Frontline meets with Chairs and Committee Leads to discuss vision & Federation messaging.\n\nTopics covered:\n• Recruitment efforts\n• Remarks – personal story\n• Brief Chair: food, décor, setup, invite, etc.\n• Event flow" },
+        { abbr: "CSM", title: "Concept Strategy Meeting",             owner: "Events",               role: "events",    description: "Events conducts first concept strategy meeting with Frontline, Marketing, and Event Leads.\n\nMeeting notes:\n• Includes only Leads and Project Coordinator (if assigned)\n• Leads will determine who should be involved in future meetings and what is needed to move forward\n• Meeting purpose is to ensure alignment on vision before the rest of the team has to execute" },
+        { abbr: "EXV", title: "Execute the vision",                   owner: "Marketing & Events",   role: "marketing", description: "Marketing & Events work to execute the vision.\n\n• Marketing: align remarks with Federation messaging for the target audience\n• Events: venue, décor, and overall run of show" },
+        { abbr: "FDA", title: "Final Decision Authority",             owner: "Frontline",            role: "frontline", description: "Frontline Lead is final decision-maker on all marketing & event items — continuity, slides, program flow, and related aspects of the event. Marketing will ensure alignment with Federation branding, messaging, and donor experience standards." }
+      ]
+    },
+
+    continuity: {
+      label: "Continuity",
+      title: "Continuity Review Process",
+      subtitle: "Read top to bottom — dashed lines are rework loops",
+      tagline: "Flowchart 2 — review cycle for continuity materials",
+      steps: [
+        { abbr: "MDC", title: "Marketing drafts continuity",                owner: "Marketing", role: "marketing", description: "Marketing team drafts continuity utilizing Federation messaging & customizes it for target audience based on vision." },
+        { abbr: "MIR", title: "Marketing internal review",                  owner: "Marketing", role: "marketing", description: "Marketing team conducts internal review and checks for impact, donor-centric messaging, throughline (see Continuity checklist)." },
+        { abbr: "MPT", title: "Marketing posts on Teams",                   owner: "Marketing", role: "marketing", description: "Marketing posts continuity on Teams for review." },
+        { abbr: "FRF", title: "Frontline reviews & provides feedback",      owner: "Frontline", role: "frontline", description: "Frontline reviews & provides feedback to Marketing." },
+        { abbr: "MUF", title: "Marketing updates continuity",               owner: "Marketing", role: "marketing", description: "Marketing updates continuity based on feedback and posts modified version for next review." },
+        { abbr: "FRS", title: "Frontline reviews with Supervisor",          owner: "Frontline", role: "frontline", description: "Frontline reviews & shares with Supervisor and others (if needed) for feedback." },
+        { abbr: "FSF", title: "Frontline shares feedback on Teams",         owner: "Frontline", role: "frontline", description: "Frontline shares all internal feedback on Teams." },
+        { abbr: "MEB", title: "Marketing edits based on feedback",          owner: "Marketing", role: "marketing", description: "Marketing makes edits based on feedback and posts updated version.\n\n◆ Decision point: Approved (checklist met)?\n• If yes → proceed to step 9\n• If no → back to step 4" },
+        { abbr: "FSC", title: "Frontline shares with Chairs",               owner: "Frontline", role: "frontline", description: "If approved, Frontline then shares updated version with Chairs for input." },
+        { abbr: "FFM", title: "Frontline feedback to Marketing",            owner: "Frontline", role: "frontline", description: "If input provided, Frontline shares feedback to Marketing for final version." },
+        { abbr: "MCF", title: "Marketing updates on Chair feedback",        owner: "Marketing", role: "marketing", description: "Marketing updates based on Chair feedback and reposts on Teams." },
+        { abbr: "FFA", title: "Frontline final approval",                   owner: "Frontline", role: "frontline", description: "Frontline gives final approval.\n\n◆ Decision point: Approved (checklist met)?\n• If yes → proceed to step 13\n• If no → back to step 11" },
+        { abbr: "FDU", title: "Frontline distributes updated version",      owner: "Frontline", role: "frontline", description: "If approved, Frontline distributes updated version to speakers, Chairs, and Supervisor as needed." },
+        { abbr: "EPC", title: "Events prints copies",                       owner: "Events",    role: "events",    description: "Events prints copies for event." }
+      ]
+    }
+
+  }
 
 };
 </script>
@@ -85,220 +126,153 @@ const APP_CONTENT = {
      unless you know what you're doing.
 ======================================================================= -->
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:#f5f5f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#2c2c2a;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 0 24px rgba(20,49,94,0.08)}
+body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;min-height:100vh;background:#fff;box-shadow:0 0 24px rgba(20,49,94,0.08);position:relative}
 
-.app-header{background:#14315E;padding:14px 18px 14px;color:#E6F1FB;flex-shrink:0}
+.logo-bar{background:#fff;padding:10px 16px;border-bottom:0.5px solid #E5E2D6;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.logo-bar img{height:36px;max-width:100%;object-fit:contain}
+.logo-bar .logo-fallback{font-size:13px;color:#14315E;font-weight:500;text-align:center}
+
+.app-header{background:#14315E;padding:13px 18px;color:#E6F1FB;flex-shrink:0}
 .app-header h1{font-size:16px;font-weight:500;margin-bottom:2px}
 .app-header p{font-size:12px;color:#85B7EB}
 
-.context-bar{background:#0C447C;padding:9px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0}
-.context-label{color:#85B7EB;font-size:12px}
-.context-value{color:#E6F1FB;font-size:12px;font-weight:500;flex:1}
-.clear-btn{background:transparent;border:0.5px solid #378ADD;color:#B5D4F4;font-size:11px;padding:4px 10px;border-radius:5px;cursor:pointer;font-family:inherit;transition:background .15s}
-.clear-btn:active{background:rgba(255,255,255,0.1)}
-
-.tab-bar{display:flex;border-bottom:0.5px solid #D3D1C7;background:#fff;flex-shrink:0;overflow-x:auto}
-.tab{flex:1;padding:12px 4px;font-size:12px;text-align:center;color:#5F5E5A;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;font-family:inherit;background:transparent;border-left:none;border-right:none;border-top:none;min-width:64px;white-space:nowrap}
+.tab-bar{display:flex;border-bottom:0.5px solid #D3D1C7;background:#fff;flex-shrink:0}
+.tab{flex:1;padding:13px 4px;font-size:13px;text-align:center;color:#5F5E5A;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;font-family:inherit;background:transparent;border-left:none;border-right:none;border-top:none}
 .tab.active{color:#185FA5;border-bottom-color:#185FA5;font-weight:500}
 
-.screen{padding:14px 16px;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.section-lbl{font-size:11px;font-weight:500;color:#888780;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.screen{padding:14px 16px}
 
-.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
-.team-card{padding:12px 10px;border-radius:10px;border:0.5px solid;cursor:pointer;transition:transform .15s,box-shadow .15s;text-align:center;font-family:inherit}
-.team-card:active{transform:scale(0.97)}
-.team-card.selected{box-shadow:0 0 0 2px currentColor inset}
-.team-card .team-name{font-size:13px;font-weight:500;margin-bottom:3px}
-.team-card .team-sub{font-size:11px;opacity:.85;margin-bottom:8px}
-.team-card .team-count{font-size:10px;padding:2px 7px;border-radius:4px;display:inline-block;font-weight:500}
+.flow-title{font-size:15px;font-weight:500;color:#14315E;margin-bottom:2px}
+.flow-subtitle{font-size:12px;color:#5F5E5A;margin-bottom:3px}
+.flow-tagline{font-size:11px;color:#888780;font-style:italic;margin-bottom:14px;line-height:1.5}
 
-.team-card.events{background:#E6F1FB;border-color:#85B7EB;color:#0C447C}
-.team-card.events.selected{background:#185FA5;border-color:#0C447C;color:#E6F1FB}
-.team-card.events .team-count{background:#B5D4F4;color:#0C447C}
-.team-card.events.selected .team-count{background:#0C447C;color:#B5D4F4}
+.team-divider{margin:14px 0 8px;padding:6px 10px;border-radius:6px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.team-divider:first-child{margin-top:4px}
+.team-divider.frontline{background:#EEEDFE;color:#3C3489}
+.team-divider.admin{background:#E1F5EE;color:#085041}
+.team-divider.marketing{background:#FAECE7;color:#712B13}
+.team-divider.events{background:#E6F1FB;color:#0C447C}
+.team-divider .count{font-weight:400;opacity:.75;font-size:10px}
 
-.team-card.admin{background:#E1F5EE;border-color:#5DCAA5;color:#085041}
-.team-card.admin.selected{background:#0F6E56;border-color:#085041;color:#E1F5EE}
-.team-card.admin .team-count{background:#9FE1CB;color:#085041}
-.team-card.admin.selected .team-count{background:#085041;color:#9FE1CB}
-
-.team-card.marketing{background:#FAECE7;border-color:#F0997B;color:#712B13}
-.team-card.marketing.selected{background:#993C1D;border-color:#712B13;color:#FAECE7}
-.team-card.marketing .team-count{background:#F5C4B3;color:#712B13}
-.team-card.marketing.selected .team-count{background:#712B13;color:#F5C4B3}
-
-.team-card.frontline{background:#EEEDFE;border-color:#AFA9EC;color:#3C3489}
-.team-card.frontline.selected{background:#534AB7;border-color:#3C3489;color:#EEEDFE}
-.team-card.frontline .team-count{background:#CECBF6;color:#3C3489}
-.team-card.frontline.selected .team-count{background:#3C3489;color:#CECBF6}
-
-.flag-row{display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap}
-.flag{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:500;letter-spacing:.04em}
-.team-card.events .flag.on{background:#0C447C;color:#B5D4F4}
-.team-card.admin .flag.on{background:#085041;color:#9FE1CB}
-.team-card.marketing .flag.on{background:#712B13;color:#F5C4B3}
-.team-card.frontline .flag.on{background:#3C3489;color:#CECBF6}
-.team-card.selected .flag.on{background:rgba(255,255,255,.25);color:#fff}
-.team-card .flag.off{background:transparent;border:0.5px solid currentColor;color:currentColor;opacity:.5}
-
-.ppt-strip{background:#F1EFE8;border-radius:8px;padding:12px 14px;text-align:center;margin-top:6px}
-.ppt-strip-label{font-size:10px;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-.ppt-strip-text{font-size:13px;font-weight:500;color:#2c2c2a}
-
-.flow-step{display:flex;align-items:flex-start;gap:9px;padding:11px 12px;border-radius:8px;margin-bottom:6px;border:0.5px solid #D3D1C7;background:#fff;transition:background .15s}
-.flow-step.mine{background:#E6F1FB;border-color:#85B7EB}
-.flow-step.mine-admin{background:#E1F5EE;border-color:#5DCAA5}
-.flow-step.mine-marketing{background:#FAECE7;border-color:#F0997B}
-.flow-step.mine-frontline{background:#EEEDFE;border-color:#AFA9EC}
-.flow-step.flagged{background:#FAEEDA;border-color:#EF9F27}
-.step-num{width:22px;height:22px;border-radius:50%;background:#14315E;color:#E6F1FB;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:500}
-.flow-step.mine .step-num{background:#185FA5}
-.flow-step.mine-admin .step-num{background:#0F6E56}
-.flow-step.mine-marketing .step-num{background:#993C1D}
-.flow-step.mine-frontline .step-num{background:#534AB7}
-.flow-step.flagged .step-num{background:#854F0B;color:#FAEEDA}
+.flow-step{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:9px;margin-bottom:6px;border:0.5px solid #D3D1C7;background:#fff;cursor:pointer;transition:transform .12s,border-color .12s;width:100%;text-align:left;font-family:inherit}
+.flow-step:active{transform:scale(0.98)}
+.flow-step:hover{border-color:#85B7EB}
+.abbr-badge{width:38px;height:38px;border-radius:9px;color:#fff;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.04em}
+.abbr-badge.frontline{background:#534AB7}
+.abbr-badge.admin{background:#0F6E56}
+.abbr-badge.marketing{background:#993C1D}
+.abbr-badge.events{background:#185FA5}
 .step-body{flex:1;min-width:0}
-.step-title{font-size:13px;font-weight:500;color:#2c2c2a;margin-bottom:2px}
-.step-owner{font-size:12px;color:#5F5E5A}
-.step-actions{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
-.badge{font-size:10px;padding:2px 7px;border-radius:3px;background:#F1EFE8;color:#5F5E5A;font-weight:500}
-.badge.mine{background:#B5D4F4;color:#0C447C}
-.badge.mine-admin{background:#9FE1CB;color:#085041}
-.badge.mine-marketing{background:#F5C4B3;color:#712B13}
-.badge.mine-frontline{background:#CECBF6;color:#3C3489}
-.badge.q{background:#FAC775;color:#633806}
-.flag-btn{margin-left:auto;font-size:20px;cursor:pointer;flex-shrink:0;padding:0 4px;color:#888780;background:transparent;border:none;font-family:inherit}
-.flag-btn.active{color:#BA7517}
+.step-title{font-size:13px;font-weight:500;color:#2c2c2a;margin-bottom:1px;line-height:1.35}
+.step-owner{font-size:11px;color:#5F5E5A}
+.step-num-mini{font-size:10px;color:#888780;margin-right:4px;font-variant-numeric:tabular-nums}
+.chev{color:#888780;font-size:18px;flex-shrink:0}
 
-.stat-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
-.stat-card{background:#F1EFE8;border-radius:8px;padding:12px 14px}
-.stat-val{font-size:24px;font-weight:500;color:#2c2c2a}
-.stat-lbl{font-size:12px;color:#5F5E5A;margin-top:2px}
-
-.heat-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.heat-label{font-size:12px;color:#5F5E5A;width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.heat-bar-wrap{flex:1;height:16px;background:#F1EFE8;border-radius:4px;overflow:hidden}
-.heat-bar{height:100%;border-radius:4px;transition:width .4s ease-out}
-.heat-count{font-size:12px;color:#5F5E5A;width:18px;text-align:right;flex-shrink:0;font-weight:500}
+.modal-overlay{position:fixed;inset:0;background:rgba(20,49,94,0.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:100;-webkit-tap-highlight-color:transparent}
+.modal-overlay.open{display:flex;animation:fadeIn .18s ease-out}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{background:#fff;border-radius:14px;width:100%;max-width:340px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.25);animation:slideIn .22s ease-out}
+@keyframes slideIn{from{opacity:0;transform:scale(0.94) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-hdr{padding:16px 18px;color:#fff;display:flex;align-items:center;gap:12px}
+.modal-hdr.frontline{background:#534AB7}
+.modal-hdr.admin{background:#0F6E56}
+.modal-hdr.marketing{background:#993C1D}
+.modal-hdr.events{background:#185FA5}
+.modal-abbr{width:46px;height:46px;border-radius:10px;font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:.04em}
+.modal-hdr.frontline .modal-abbr{background:#3C3489;color:#CECBF6}
+.modal-hdr.admin .modal-abbr{background:#085041;color:#9FE1CB}
+.modal-hdr.marketing .modal-abbr{background:#712B13;color:#F5C4B3}
+.modal-hdr.events .modal-abbr{background:#0C447C;color:#B5D4F4}
+.modal-title-block{flex:1;min-width:0}
+.modal-title-block .step-n{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.8}
+.modal-title-block .step-t{font-size:15px;font-weight:500;margin-top:2px;line-height:1.3}
+.modal-body{padding:16px 18px}
+.modal-row{margin-bottom:12px}
+.modal-row-lbl{font-size:11px;font-weight:500;color:#888780;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.modal-row-val{font-size:13px;color:#2c2c2a;line-height:1.55;white-space:pre-wrap}
+.modal-close{background:#F1EFE8;color:#2c2c2a;border:none;width:100%;padding:11px;font-size:14px;font-weight:500;border-radius:8px;cursor:pointer;font-family:inherit;margin-top:4px;transition:background .15s}
+.modal-close:active{background:#D3D1C7}
 
 .bottom-nav{display:flex;border-top:0.5px solid #D3D1C7;background:#fff;flex-shrink:0;padding-bottom:env(safe-area-inset-bottom)}
-.nav-item{flex:1;padding:10px 4px 12px;text-align:center;cursor:pointer;color:#888780;font-size:11px;background:transparent;border:none;font-family:inherit}
+.nav-item{flex:1;padding:9px 4px 11px;text-align:center;cursor:pointer;color:#888780;font-size:11px;background:transparent;border:none;font-family:inherit;transition:color .15s}
 .nav-item i{display:block;font-size:20px;margin-bottom:3px;font-style:normal}
 .nav-item.active{color:#185FA5}
-
-.empty-state{text-align:center;padding:40px 16px;color:#888780;font-size:13px;line-height:1.7}
-.empty-state i{font-size:36px;display:block;margin-bottom:12px;color:#B4B2A9}
-
-.about-section{font-size:13px;color:#5F5E5A;line-height:1.7}
-.about-section p{margin-bottom:10px}
-.about-section .highlight{display:inline-block;padding:1px 6px;border-radius:3px}
 
 @media (prefers-color-scheme: dark) {
   html,body{background:#0d1f3c;color:#E6F1FB}
   body{background:#0d1f3c;box-shadow:none}
-  .flow-step{background:#14315E;border-color:#1F6FA8;color:#E6F1FB}
-  .step-title{color:#E6F1FB}
-  .step-owner{color:#85B7EB}
-  .badge{background:#1F6FA8;color:#85B7EB}
-  .stat-card{background:#14315E}
-  .stat-val{color:#E6F1FB}
-  .stat-lbl{color:#85B7EB}
-  .heat-bar-wrap{background:#14315E}
-  .heat-label,.heat-count{color:#85B7EB}
-  .ppt-strip{background:#14315E}
-  .ppt-strip-text{color:#E6F1FB}
-  .ppt-strip-label{color:#85B7EB}
-  .section-lbl{color:#85B7EB}
+  .logo-bar{background:#fff}
   .tab-bar{background:#0d1f3c;border-bottom-color:#1F6FA8}
   .tab{color:#85B7EB}
   .tab.active{color:#85B7EB;border-bottom-color:#85B7EB}
+  .flow-step{background:#14315E;border-color:#1F6FA8}
+  .flow-step:hover{border-color:#378ADD}
+  .step-title{color:#E6F1FB}
+  .step-owner{color:#85B7EB}
+  .step-num-mini{color:#5B96C9}
+  .chev{color:#5B96C9}
+  .flow-title{color:#E6F1FB}
+  .flow-subtitle{color:#85B7EB}
+  .flow-tagline{color:#5B96C9}
+  .modal-card{background:#14315E}
+  .modal-row-lbl{color:#5B96C9}
+  .modal-row-val{color:#E6F1FB}
+  .modal-close{background:#0d1f3c;color:#E6F1FB}
   .bottom-nav{background:#0d1f3c;border-top-color:#1F6FA8}
   .nav-item{color:#5B96C9}
   .nav-item.active{color:#85B7EB}
-  .empty-state{color:#85B7EB}
-  .empty-state i{color:#5B96C9}
-  .about-section{color:#B5D4F4}
 }
 </style>
 </head>
 <body>
 
+<div class="logo-bar">
+  <img src="logo.png" alt="Jewish Federation of Palm Beach County" onerror="this.style.display='none';document.getElementById('logo-fb').style.display='block'">
+  <div id="logo-fb" class="logo-fallback" style="display:none">Jewish Federation of Palm Beach County</div>
+</div>
+
 <header class="app-header">
   <h1 id="app-title">Event Services Workflow Suite</h1>
-  <p id="app-subtitle">Staff Retreat 2025 · Tap a team to spotlight their work</p>
+  <p id="app-subtitle">Philanthropy & External Relations Retreat 2026</p>
 </header>
 
-<div class="context-bar">
-  <span class="context-label">Spotlight:</span>
-  <span class="context-value" id="ctx-value">All teams</span>
-  <button class="clear-btn" onclick="setRole('all')">Clear</button>
-</div>
+<div class="tab-bar" id="tab-bar"></div>
 
-<div class="tab-bar">
-  <button class="tab active" data-screen="teams" onclick="showScreen('teams')">Teams</button>
-  <button class="tab" data-screen="vision" onclick="showScreen('vision')">Vision</button>
-  <button class="tab" data-screen="continuity" onclick="showScreen('continuity')">Continuity</button>
-  <button class="tab" data-screen="heatmap" onclick="showScreen('heatmap')">Questions</button>
-</div>
+<main id="main-content"></main>
 
-<main>
-  <section id="screen-teams" class="screen">
-    <p class="section-lbl">Core planning teams — tap to spotlight</p>
-    <div class="team-grid" id="team-grid"></div>
-    <div class="ppt-strip">
-      <div class="ppt-strip-label">Tagline</div>
-      <div class="ppt-strip-text" id="tagline-text"></div>
+<nav class="bottom-nav" id="bottom-nav"></nav>
+
+<div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-hdr" id="modal-hdr">
+      <div class="modal-abbr" id="modal-abbr"></div>
+      <div class="modal-title-block">
+        <div class="step-n" id="modal-step-n"></div>
+        <div class="step-t" id="modal-step-t"></div>
+      </div>
     </div>
-  </section>
-
-  <section id="screen-vision" class="screen" style="display:none">
-    <p class="section-lbl">Phase 1 — Setting the vision</p>
-    <div id="vision-steps"></div>
-  </section>
-
-  <section id="screen-continuity" class="screen" style="display:none">
-    <p class="section-lbl">Phase 2 — Continuity review</p>
-    <div id="continuity-steps"></div>
-  </section>
-
-  <section id="screen-heatmap" class="screen" style="display:none">
-    <p class="section-lbl">Live question heat map</p>
-    <div class="stat-row">
-      <div class="stat-card"><div class="stat-val" id="totalFlags">0</div><div class="stat-lbl">Questions flagged</div></div>
-      <div class="stat-card"><div class="stat-val" id="staffCount">30</div><div class="stat-lbl">Staff attending</div></div>
+    <div class="modal-body">
+      <div class="modal-row">
+        <div class="modal-row-lbl">Owner</div>
+        <div class="modal-row-val" id="modal-owner"></div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-row-lbl">Description</div>
+        <div class="modal-row-val" id="modal-desc"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">Close</button>
     </div>
-    <p class="section-lbl">Most-questioned steps</p>
-    <div id="heatmap-rows"></div>
-  </section>
-</main>
-
-<nav class="bottom-nav">
-  <button class="nav-item active" data-screen="teams" onclick="showScreen('teams')"><i class="ti ti-users"></i>Teams</button>
-  <button class="nav-item" data-screen="vision" onclick="showScreen('vision')"><i class="ti ti-git-branch"></i>Vision</button>
-  <button class="nav-item" data-screen="continuity" onclick="showScreen('continuity')"><i class="ti ti-refresh"></i>Review</button>
-  <button class="nav-item" data-screen="heatmap" onclick="showScreen('heatmap')"><i class="ti ti-flame"></i>Heat map</button>
-</nav>
+  </div>
+</div>
 
 <script>
-const roleLabels = {
-  all: 'All teams',
-  events: 'Events Lead',
-  admin: 'Administrative',
-  marketing: 'Marketing',
-  frontline: 'Frontline'
-};
-const roleClass = {
-  events: 'mine',
-  admin: 'mine-admin',
-  marketing: 'mine-marketing',
-  frontline: 'mine-frontline'
-};
-
-let currentRole = 'all';
-const flags = {};
+const ICONS = { teams: 'ti-users', vision: 'ti-bulb', continuity: 'ti-refresh' };
+let currentFlow = 'teams';
 
 function escapeHTML(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -307,113 +281,103 @@ function escapeHTML(s) {
 function init() {
   document.getElementById('app-title').textContent = APP_CONTENT.retreatTitle;
   document.getElementById('app-subtitle').textContent = APP_CONTENT.retreatSubtitle;
-  document.getElementById('staffCount').textContent = APP_CONTENT.staffCount;
-  document.getElementById('tagline-text').textContent = APP_CONTENT.tagline;
-  document.title = APP_CONTENT.retreatTitle + ' | JFPBC';
+  document.title = APP_CONTENT.retreatTitle;
 
-  const grid = document.getElementById('team-grid');
-  grid.innerHTML = APP_CONTENT.teams.map(t => {
-    const count = countSteps(t.role);
-    return `<div class="team-card ${escapeHTML(t.role)}" data-role="${escapeHTML(t.role)}" onclick="setRole('${escapeHTML(t.role)}')">
-      <div class="team-name">${escapeHTML(t.name)}</div>
-      <div class="team-sub">${escapeHTML(t.subtitle)}</div>
-      <div class="team-count">${count} step${count === 1 ? '' : 's'}</div>
-      <div class="flag-row">
-        <span class="flag ${t.coach?'on':'off'}">COACH</span>
-        <span class="flag ${t.escalate?'on':'off'}">ESCALATE</span>
-        <span class="flag ${t.review?'on':'off'}">REVIEW</span>
-      </div>
-    </div>`;
-  }).join('');
+  const keys = Object.keys(APP_CONTENT.flowcharts);
+  const tabBar = document.getElementById('tab-bar');
+  tabBar.innerHTML = keys.map(k =>
+    `<button class="tab" data-flow="${k}" onclick="showFlow('${k}')">${escapeHTML(APP_CONTENT.flowcharts[k].label)}</button>`
+  ).join('');
 
-  renderSteps('vision');
-  renderSteps('continuity');
+  const nav = document.getElementById('bottom-nav');
+  nav.innerHTML = keys.map(k =>
+    `<button class="nav-item" data-flow="${k}" onclick="showFlow('${k}')"><i class="ti ${ICONS[k] || 'ti-list'}"></i>${escapeHTML(APP_CONTENT.flowcharts[k].label)}</button>`
+  ).join('');
+
+  showFlow(keys[0]);
 }
 
-function countSteps(role) {
-  return [...APP_CONTENT.visionSteps, ...APP_CONTENT.continuitySteps].filter(s => s.role === role).length;
-}
+function renderFlow(key) {
+  const f = APP_CONTENT.flowcharts[key];
+  if (!f) return '';
+  let html = `<div class="screen">
+    <div class="flow-title">${escapeHTML(f.title)}</div>
+    <div class="flow-subtitle">${escapeHTML(f.subtitle || '')}</div>
+    ${f.tagline ? `<div class="flow-tagline">${escapeHTML(f.tagline)}</div>` : ''}`;
 
-function isMine(step) {
-  if (currentRole === 'all') return false;
-  return step.role === currentRole || step.role === 'all';
-}
-
-function renderSteps(phase) {
-  const stepsKey = phase === 'vision' ? 'visionSteps' : 'continuitySteps';
-  const steps = APP_CONTENT[stepsKey];
-  const el = document.getElementById(phase + '-steps');
-  if (!el) return;
-  el.innerHTML = steps.map((s, i) => {
-    const mine = isMine(s);
-    const flagged = flags[phase + i];
-    const cls = mine ? (roleClass[currentRole] || 'mine') : '';
-    return `<div class="flow-step${cls ? ' ' + cls : ''}${flagged ? ' flagged' : ''}">
-      <div class="step-num">${i + 1}</div>
-      <div class="step-body">
-        <div class="step-title">${escapeHTML(s.title)}</div>
-        <div class="step-owner">${escapeHTML(s.owner)}</div>
-        <div class="step-actions">
-          ${mine ? `<span class="badge ${cls}">${escapeHTML(roleLabels[currentRole])}</span>` : ''}
-          ${flagged ? '<span class="badge q">Question flagged</span>' : ''}
-        </div>
-      </div>
-      <button class="flag-btn${flagged ? ' active' : ''}" onclick="toggleFlag('${phase}',${i},event)" aria-label="Flag for discussion">${flagged ? '⚑' : '⚐'}</button>
-    </div>`;
-  }).join('');
-}
-
-function toggleFlag(phase, i, e) {
-  e.stopPropagation();
-  flags[phase + i] = !flags[phase + i];
-  renderSteps(phase);
-  renderHeatmap();
-  document.getElementById('totalFlags').textContent = Object.values(flags).filter(Boolean).length;
-}
-
-function renderHeatmap() {
-  const allSteps = [
-    ...APP_CONTENT.visionSteps.map((s, i) => ({...s, key: 'vision' + i, count: flags['vision' + i] ? Math.floor(Math.random() * 8) + 3 : 0})),
-    ...APP_CONTENT.continuitySteps.map((s, i) => ({...s, key: 'continuity' + i, count: flags['continuity' + i] ? Math.floor(Math.random() * 6) + 2 : 0}))
-  ].filter(s => s.count > 0).sort((a, b) => b.count - a.count).slice(0, 6);
-
-  const el = document.getElementById('heatmap-rows');
-  if (!allSteps.length) {
-    el.innerHTML = '<div class="empty-state"><i class="ti ti-flag-2"></i>No questions flagged yet.<br>Tap ⚐ on any step.</div>';
-    return;
+  if (key === 'teams') {
+    const groups = {};
+    f.steps.forEach((s, i) => {
+      if (!groups[s.role]) groups[s.role] = [];
+      groups[s.role].push({...s, _idx: i});
+    });
+    const order = ['frontline', 'admin', 'marketing', 'events'];
+    const teamNames = { frontline: 'Frontline', admin: 'Administrative', marketing: 'Marketing', events: 'Events' };
+    order.forEach(role => {
+      if (!groups[role]) return;
+      const items = groups[role];
+      html += `<div class="team-divider ${role}">${escapeHTML(teamNames[role])} <span class="count">· ${items.length} responsibilit${items.length === 1 ? 'y' : 'ies'}</span></div>`;
+      items.forEach(s => {
+        html += stepRow(key, s, s._idx, false);
+      });
+    });
+  } else {
+    f.steps.forEach((s, i) => {
+      html += stepRow(key, s, i, true);
+    });
   }
-  const max = Math.max(...allSteps.map(s => s.count), 1);
-  el.innerHTML = allSteps.map(s => {
-    const pct = Math.round(s.count / max * 100);
-    const color = s.count > 6 ? '#BA7517' : s.count > 3 ? '#EF9F27' : '#FAC775';
-    return `<div class="heat-row">
-      <div class="heat-label">${escapeHTML(s.title)}</div>
-      <div class="heat-bar-wrap"><div class="heat-bar" style="width:${pct}%;background:${color}"></div></div>
-      <div class="heat-count">${s.count}</div>
-    </div>`;
-  }).join('');
+
+  html += `</div>`;
+  return html;
 }
 
-function setRole(role) {
-  currentRole = role;
-  document.getElementById('ctx-value').textContent = roleLabels[role];
-  document.querySelectorAll('.team-card').forEach(c => {
-    c.classList.toggle('selected', c.dataset.role === role);
-  });
-  renderSteps('vision');
-  renderSteps('continuity');
+function stepRow(flowKey, s, idx, showNum) {
+  return `<button class="flow-step" onclick="openModal('${flowKey}',${idx})">
+    <div class="abbr-badge ${escapeHTML(s.role)}">${escapeHTML(s.abbr)}</div>
+    <div class="step-body">
+      <div class="step-title">${showNum ? `<span class="step-num-mini">${idx + 1}.</span>` : ''}${escapeHTML(s.title)}</div>
+      <div class="step-owner">${escapeHTML(s.owner)}</div>
+    </div>
+    <i class="ti ti-chevron-right chev"></i>
+  </button>`;
 }
 
-function showScreen(name) {
-  ['teams', 'vision', 'continuity', 'heatmap'].forEach(s => {
-    const el = document.getElementById('screen-' + s);
-    if (el) el.style.display = s === name ? 'block' : 'none';
-  });
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.screen === name));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.screen === name));
-  if (name === 'heatmap') renderHeatmap();
+function showFlow(key) {
+  currentFlow = key;
+  document.getElementById('main-content').innerHTML = renderFlow(key);
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.flow === key));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.flow === key));
   window.scrollTo(0, 0);
 }
+
+function openModal(flowKey, idx) {
+  const f = APP_CONTENT.flowcharts[flowKey];
+  const s = f.steps[idx];
+  const hdr = document.getElementById('modal-hdr');
+  hdr.className = 'modal-hdr ' + s.role;
+  document.getElementById('modal-abbr').textContent = s.abbr;
+  document.getElementById('modal-step-n').textContent = flowKey === 'teams'
+    ? f.label
+    : `Step ${idx + 1} of ${f.steps.length}`;
+  document.getElementById('modal-step-t').textContent = s.title;
+  document.getElementById('modal-owner').textContent = s.owner;
+  document.getElementById('modal-desc').textContent = s.description || '—';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target.id === 'modal') closeModal();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
 
 init();
 </script>
