@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PER Retreat 2026 — Feedback</title>
+<style>
+  :root {
+    --navy: #1E3EAF;
+    --ink: #14315E;
+    --blue: #1C87ED;
+    --line: #CBD9EC;
+    --bg: #F5F8FC;
+    --muted: #5B7596;
+    --danger: #B3261E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 20px 16px 40px; }
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .head {
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    padding: 22px 20px 18px;
+  }
+  .head .badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 18px; font-weight: 600; letter-spacing: 0.2px;
+  }
+  .head .sub { margin: 5px 0 0; font-size: 13px; color: #B5D4F4; }
+  .body { padding: 22px 20px 24px; }
+  .body h1 { margin: 0 0 4px; font-size: 20px; font-weight: 600; color: var(--ink); }
+  .body .lede { margin: 0 0 22px; font-size: 14px; color: var(--muted); }
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin: 0 0 7px; }
+  .optional { font-weight: 400; color: var(--muted); }
+  select, textarea, input[type="text"] {
+    width: 100%; font-size: 15px; font-family: inherit; color: var(--ink);
+    padding: 12px 13px; border: 1px solid var(--line); border-radius: 10px;
+    background: #fff; margin: 0 0 20px; outline: none;
+  }
+  select { appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235B7596' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat: no-repeat; background-position: right 13px center; padding-right: 38px; }
+  textarea { resize: vertical; min-height: 96px; margin-bottom: 20px; }
+  select:focus, textarea:focus, input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(28,135,237,0.18); }
+  .types { display: flex; gap: 8px; margin: 0 0 20px; }
+  .type {
+    flex: 1; min-height: 46px; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  }
+  .type svg { width: 17px; height: 17px; }
+  .type[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .type:focus-visible { outline: 3px solid rgba(28,135,237,0.4); outline-offset: 1px; }
+  .submit {
+    width: 100%; min-height: 50px; cursor: pointer; font-family: inherit;
+    font-size: 16px; font-weight: 600; color: #fff;
+    background: var(--navy); border: none; border-radius: 10px;
+  }
+  .submit:hover { background: #1A359B; }
+  .submit:disabled { opacity: 0.7; cursor: default; }
+  .note { margin: 14px 0 0; font-size: 12px; color: var(--muted); text-align: center; }
+  .err { color: var(--danger); font-size: 13px; margin: -10px 0 16px; display: none; }
+  .err.show { display: block; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="card">
+      <div class="head">
+        <span class="badge">PER Retreat 2026</span>
+        <p class="sub">Philanthropy &amp; External Relations</p>
+      </div>
+      <div class="body">
+        <h1>Share your thoughts</h1>
+        <p class="lede">Ask a question or leave a comment about any part of today.</p>
+
+        <label for="session">Which session?</label>
+        <select id="session">
+          <option value="" disabled selected>Choose a session…</option>
+          <option>Welcome</option>
+          <option>Agenda &amp; Today's Goals</option>
+          <option>The Next Chapter of Federation</option>
+          <option>Our Approach to Change</option>
+          <option>Event Planning Process</option>
+          <option>MS Teams / Collaboration Panel</option>
+          <option>Branding &amp; Messaging</option>
+          <option>Using Data to Enhance Donor Engagement</option>
+          <option>Moving Forward Together</option>
+          <option>General / Logistics</option>
+        </select>
+
+        <label>Type</label>
+        <div class="types" role="group" aria-label="Feedback type">
+          <button type="button" class="type" data-value="Question" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+            Question
+          </button>
+          <button type="button" class="type" data-value="Comment" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Comment
+          </button>
+        </div>
+
+        <label for="feedback">Your feedback</label>
+        <textarea id="feedback" placeholder="Type your question or comment here…"></textarea>
+
+        <label for="name">Name <span class="optional">(optional)</span></label>
+        <input type="text" id="name" placeholder="Leave blank to stay anonymous" />
+
+        <p class="err" id="err">Please choose a type and write your feedback.</p>
+
+        <button type="button" class="submit" id="submit">Submit</button>
+        <p class="note">Goes straight to the PER team via Microsoft.</p>
+      </div>
+    </div>
+  </main>
+
+<script>
+  /* ===================================================================
+     CONFIG — paste your Microsoft Form values here (see step-by-step).
+     1. FORM_BASE: the part of your pre-filled URL up to and including
+        "...ResponsePage.aspx?id=XXXXX"  (everything before the first "&").
+     2. Each PARAM_*: the token between "&" and "=" for that question,
+        copied from the pre-filled URL Microsoft Forms generates.
+     =================================================================== */
+  var FORM_BASE   = "https://forms.office.com/Pages/ResponsePage.aspx?id=gGaQGZ6Dq0y_TAUgp_8mTq1adRzr9UhHmIgkDbgaSUVUQ05aOVhRVTNRR1FBT0hMSTJON0VJR0xVMC4u";
+  var PARAM_SESSION  = "r414345d421b74c4fada31e215f14f7ca";   // "Which session?" question
+  var PARAM_TYPE     = "r67433d9942f147d69927e8355a87066a";   // "Type" question
+  var PARAM_FEEDBACK = "rc5109ae457684de6b0fe879e69fdc506";   // "Your feedback" question
+  var PARAM_NAME     = "r0d0fc2b2e142484891d2d87e2c1baf7c";   // "Name" question
+
+  var selectedType = "";
+  var typeButtons = document.querySelectorAll(".type");
+  typeButtons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      typeButtons.forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true");
+      selectedType = b.getAttribute("data-value");
+      hideError();
+    });
+  });
+
+  function hideError() { document.getElementById("err").classList.remove("show"); }
+
+  document.getElementById("submit").addEventListener("click", function () {
+    var session  = document.getElementById("session").value;
+    var feedback = document.getElementById("feedback").value.trim();
+    var name     = document.getElementById("name").value.trim();
+
+    if (!session || !selectedType || !feedback) {
+      document.getElementById("err").classList.add("show");
+      return;
+    }
+
+    var url = FORM_BASE
+      + "&" + PARAM_SESSION  + "=" + encodeURIComponent('"' + session + '"')
+      + "&" + PARAM_TYPE     + "=" + encodeURIComponent('"' + selectedType + '"')
+      + "&" + PARAM_FEEDBACK + "=" + encodeURIComponent(feedback)
+      + "&" + PARAM_NAME     + "=" + encodeURIComponent(name || "Anonymous");
+
+    var btn = document.getElementById("submit");
+    btn.disabled = true;
+    btn.textContent = "Opening secure form…";
+    window.location.href = url;
+  });
+</script>
+</body>
+</html>
